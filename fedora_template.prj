@@ -1,0 +1,35 @@
+<project name="Fedora:%release%">
+  <title>Fedora_%release%</title>
+  <description>Fedora %release% packages</description>
+  <person userid="Admin" role="bugowner"/>
+  <person userid="luksoft" role="bugowner"/>
+  <person userid="luksoft" role="downloader"/>
+  <person userid="Admin" role="maintainer"/>
+  <person userid="luksoft" role="maintainer"/>
+  <person userid="luksoft" role="reader"/>
+  <person userid="luksoft" role="reviewer"/>
+  <build>
+    <enable/>
+  </build>
+  <publish>
+    <enable/>
+  </publish>
+  <debuginfo>
+    <disable/>
+  </debuginfo>
+  <binarydownload>
+    <enable/>
+  </binarydownload>
+  <sourceaccess>
+    <disable/>
+  </sourceaccess>
+  <access>
+    <enable/>
+  </access>
+  <repository name="updates">
+    <arch>x86_64</arch>
+  </repository>
+  <repository name="standard">
+    <arch>x86_64</arch>
+  </repository>
+</project>
