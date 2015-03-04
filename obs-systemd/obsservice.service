@@ -1,0 +1,21 @@
+[Unit]
+Description=obsservice
+After=syslog.target network.target basic.target obssrcserver.service
+Requires=obssrcserver.service
+#Requires=obsdispatcher.service obspublisher.service obsrepserver.service obsscheduler.service obssignd.service obssigner.service obssrcserver.service obswarden.service
+BindsTo=obssrcserver.service
+
+[Service]
+EnvironmentFile=/etc/sysconfig/obs-server
+Environment=workdir="/var/tmp/obs_service"
+
+Type=simple
+ExecStartPre=/usr/bin/mkdir -p $OBS_RUN_DIR $OBS_LOG_DIR $workdir ; /usr/bin/chown obsrun:obsrun $OBS_RUN_DIR $OBS_LOG_DIR $workdir
+ExecStart=/usr/lib/obs/server/bs_service --tempdir "$workdir" 2>&1 | tee $OBS_LOG_DIR/src_service.log
+ExecStop=/usr/lib/obs/server/bs_service --stop
+ExecReload=/usr/lib/obs/server/bs_service --restart
+User=obsrun
+Group=obsrun
+
+[Install]
+WantedBy=multi-user.target

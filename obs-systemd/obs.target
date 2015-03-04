@@ -1,0 +1,9 @@
+[Unit]
+Description=Open Build service target
+After=basic.target network.target syslog.target
+DefaultDependencies=no
+Conflicts=shutdown.target
+Requires=obsdispatcher.service obspublisher.service obsrepserver.service obsscheduler.service obssignd.service obssigner.service obssrcserver.service obswarden.service obsservice.service apache2.service
+
+[Install]
+WantedBy=multi-user.target

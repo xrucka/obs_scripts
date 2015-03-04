@@ -1,0 +1,18 @@
+[Unit]
+Description=obspublisher
+After=syslog.target network.target basic.target obssrcserver.service
+Requires=obssrcserver.service
+BindsTo=obssrcserver.service
+
+[Service]
+EnvironmentFile=/etc/sysconfig/obs-server
+
+Type=simple
+ExecStart=/usr/lib/obs/server/bs_publish 2>&1 | tee $OBS_LOG_DIR/publisher.log
+ExecStop=/usr/lib/obs/server/bs_publish --stop
+ExecReload=/usr/lib/obs/server/bs_publish --restart
+User=obsrun
+Group=obsrun
+
+[Install]
+WantedBy=multi-user.target

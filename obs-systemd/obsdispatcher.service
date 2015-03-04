@@ -1,0 +1,18 @@
+[Unit]
+Description=obsdispatcher
+After=syslog.target network.target basic.target obssrcserver.service
+Requires=obssrcserver.service
+BindsTo=obssrcserver.service
+
+[Service]
+EnvironmentFile=/etc/sysconfig/obs-server
+
+Type=simple
+ExecStart=/usr/lib/obs/server/bs_dispatch 2>&1 | tee $OBS_LOG_DIR/dispatcher.log
+ExecStop=/usr/lib/obs/server/bs_dispatch --stop
+ExecReload=/usr/lib/obs/server/bs_dispatch --restart
+User=obsrun
+Group=obsrun
+
+[Install]
+WantedBy=multi-user.target

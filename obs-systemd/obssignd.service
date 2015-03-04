@@ -1,0 +1,32 @@
+[Unit]
+Description=obssignd
+After=syslog.target network.target basic.target
+
+[Service]
+EnvironmentFile=/etc/sysconfig/obs-server
+EnvironmentFile=-/etc/sysconfig/signd
+ExecStart=/usr/bin/env GNUPGHOME="$OBS_SIGND_GNUPG_HOME" /usr/sbin/signd $SIGN_OPTS -f
+Type=simple
+#User=obsrun
+#Group=obsrun
+
+[Install]
+WantedBy=multi-user.target
+
+
+# Return values acc. to LSB for all commands but status:
+# 0 - success
+# 1 - generic or unspecified error
+# 2 - invalid or excess argument(s)
+# 3 - unimplemented feature (e.g. "reload")
+# 4 - insufficient privilege
+# 5 - program is not installed
+# 6 - program is not configured
+# 7 - program is not running
+# 
+	# Status has a slightly different for the status command:
+	# 0 - service running
+	# 1 - service dead, but /var/run/  pid  file exists
+	# 2 - service dead, but /var/lock/ lock file exists
+	# 3 - service not running
+

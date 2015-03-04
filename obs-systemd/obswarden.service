@@ -1,0 +1,18 @@
+[Unit]
+Description=obswarden
+After=syslog.target network.target basic.target obssrcserver.service
+Requires=obssrcserver.service
+BindsTo=obssrcserver.service
+
+[Service]
+EnvironmentFile=/etc/sysconfig/obs-server
+
+Type=simple
+ExecStart=/usr/lib/obs/server/bs_warden 2>&1 | tee $OBS_LOG_DIR/warden.log
+ExecStop=/usr/lib/obs/server/bs_warden --stop
+ExecReload=/usr/lib/obs/server/bs_warden --restart
+User=obsrun
+Group=obsrun
+
+[Install]
+WantedBy=multi-user.target

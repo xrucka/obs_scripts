@@ -1,0 +1,19 @@
+[Unit]
+Description=obsrepserver
+After=syslog.target network.target basic.target obssrcserver.service
+Requires=obssrcserver.service
+BindsTo=obssrcserver.service
+
+[Service]
+EnvironmentFile=/etc/sysconfig/obs-server
+
+Type=simple
+ExecStartPre=/usr/bin/mkdir -p $OBS_RUN_DIR $OBS_LOG_DIR ; /usr/bin/chown obsrun:obsrun $OBS_RUN_DIR $OBS_LOG_DIR
+ExecStart=/usr/lib/obs/server/bs_repserver 2>&1 | tee $OBS_LOG_DIR/rep_server.log
+ExecStop=/usr/lib/obs/server/bs_repserver --stop
+ExecReload=/usr/lib/obs/server/bs_repserver --restart
+User=obsrun
+Group=obsrun
+
+[Install]
+WantedBy=multi-user.target
