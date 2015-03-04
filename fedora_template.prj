@@ -32,4 +32,12 @@
   <repository name="standard">
     <arch>x86_64</arch>
   </repository>
+  <download baseurl="http://download1.rpmfusion.org/free/fedora/releases/%release%/Everything/x86_64/os/" metafile="primary.xml" mtype="rpmmd" arch="x86_64" />
+  <download baseurl="http://download1.rpmfusion.org/nonfree/fedora/releases/%release%/Everything/x86_64/os/" metafile="primary.xml" mtype="rpmmd" arch="x86_64" />
+  <repository name="rpmfusion-free">
+    <arch>x86_64</arch>
+  </repository>
+  <repository name="rpmfusion-nonfree">
+    <arch>x86_64</arch>
+  </repository>
 </project>
