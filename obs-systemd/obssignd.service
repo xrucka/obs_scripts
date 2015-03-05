@@ -4,11 +4,11 @@ After=syslog.target network.target basic.target
 
 [Service]
 EnvironmentFile=/etc/sysconfig/obs-server
-EnvironmentFile=-/etc/sysconfig/signd
-ExecStart=/usr/bin/env GNUPGHOME="$OBS_SIGND_GNUPG_HOME" /usr/sbin/signd $SIGN_OPTS -f
-Type=simple
-#User=obsrun
-#Group=obsrun
+EnvironmentFile=/etc/sysconfig/signd
+ExecStart=/usr/bin/env GNUPGHOME=${OBS_SIGND_GNUPG_HOME} /usr/sbin/signd $SIGN_OPTS -f
+Type=forking
+#User=root
+#Group=root
 
 [Install]
 WantedBy=multi-user.target

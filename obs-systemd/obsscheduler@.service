@@ -1,0 +1,17 @@
+[Unit]
+Description=obsscheduler for architecture %I
+After=syslog.target network.target basic.target obssrcserver.service
+Requires=obssrcserver.service obsrepserver.service
+BindsTo=obssrcserver.service obsrepserver.service
+
+[Service]
+EnvironmentFile=/etc/sysconfig/obs-server
+ExecStart=/bin/sh -c '/usr/lib/obs/server/bs_sched %I 2>&1 | tee "${OBS_LOG_DIR}/"scheduler_%I.log'
+#ExecStart=/usr/lib/obs/server/bs_sched %I
+ExecStop=/usr/lib/obs/server/bs_admin --shutdown-scheduler %I
+Type=simple
+User=obsrun
+Group=obsrun
+
+[Install]
+WantedBy=multi-user.target
