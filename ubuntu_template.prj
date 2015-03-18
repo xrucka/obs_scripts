@@ -1,0 +1,47 @@
+<project name="Ubuntu:%release%">
+  <title>Ubuntu %release% Release (%codename%)</title>
+  <description>This contains all packages from Ubuntu %release% "main", this includes also the packages from KUbuntu, XUbuntu and Edubuntu.</description>
+  <person userid="luksoft" role="maintainer"/>
+  <person userid="Admin" role="maintainer"/>
+  <build>
+    <enable/>
+  </build>
+  <publish>
+    <enable/>
+  </publish>
+  <debuginfo>
+    <disable/>
+  </debuginfo>
+  <binarydownload>
+    <enable/>
+  </binarydownload>
+  <sourceaccess>
+    <disable/>
+  </sourceaccess>
+  <access>
+    <enable/>
+  </access>
+
+  <download baseurl="ftp://mirror.vutbr.cz/ubuntu/archive/pool/main" metafile="Packages" mtype="debmd" arch="x86_64" />
+  <download baseurl="ftp://mirror.vutbr.cz/ubuntu/archive/pool/multiverse" metafile="Packages" mtype="debmd" arch="x86_64" />
+  <download baseurl="ftp://mirror.vutbr.cz/ubuntu/archive/pool/universe" metafile="Packages" mtype="debmd" arch="x86_64" />
+  <download baseurl="ftp://mirror.vutbr.cz/ubuntu/archive/pool/restricted" metafile="Packages" mtype="debmd" arch="x86_64" />
+ftp://mirror.vutbr.cz/ubuntu/archive/dists/%codename%/main/binary-amd64/
+
+  <repository name="multiverse">
+    <arch>x86_64</arch>
+  </repository>
+  <repository name="universe">
+    <arch>x86_64</arch>
+  </repository>
+  <repository name="main">
+    <arch>x86_64</arch>
+  </repository>
+  <repository name="restricted">
+    <arch>x86_64</arch>
+  </repository>
+
+<build>
+
+
+</project>
