@@ -11,6 +11,7 @@ for fedora in $(ls -1 | grep Fedora) ; do
 			( test -d $(realpath Packages)/../repodata && \
 				cp $(realpath Packages)/../repodata/*-primary.xml.gz ./ || \
 				cp Packages/repodata/*-primary.xml.gz ./ )
+			rm primary.xml
 			gunzip -d *-primary.xml.gz
 			mv *-primary.xml primary.xml
 			find -L -maxdepth 2 -type d | sed 's#[.]/##g' > ../:full.subdirs
@@ -27,9 +28,25 @@ for fedora in $(ls -1 | grep Fedora) ; do
 				echo "Failed to enter :full in $fusion" 1>&2
 				exit 1
 			fi
-			yes | wget --unlink --timestamping -O primary.xml.gz "http://download1.rpmfusion.org/$fusion/fedora/releases/${fedora_release}/Everything/x86_64/os/repodata/primary.xml.gz" \
-				&& gunzip primary.xml.gz
-			rm -rf primary.xml.gz
+			rm primary.xml
+			
+			metafile=primary.xml
+			baseurl="http://download1.rpmfusion.org/$fusion/fedora/releases/${fedora_release}/Everything/x86_64/os/"
+
+			wget -r -np -nd -l 1 --no-host-directories -o /dev/null "$baseurl"/repodata/ -A "*"$metafile"*"
+
+			if ! test "x$(ls -1 | fgrep  $metafile'.gz')" = x ; then
+				for meta in *$metafile'.gz' ; do
+					gunzip -d $meta
+				done
+			fi
+			if ! test "x$(ls -1 grep .$metafile )" = x ; then
+				for meta in *?$metafile ; do
+					mv $meta $metafile
+				done
+			fi
+			rm -f *?"$metafile"*
+
 			popd > /dev/null
 		fi
 	done
