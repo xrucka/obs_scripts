@@ -22,12 +22,12 @@
     <enable/>
   </access>
 
-  <download baseurl="ftp://mirror.vutbr.cz/ubuntu/archive/pool/main" metafile="Packages" mtype="debmd" arch="x86_64" />
-  <download baseurl="ftp://mirror.vutbr.cz/ubuntu/archive/pool/multiverse" metafile="Packages" mtype="debmd" arch="x86_64" />
-  <download baseurl="ftp://mirror.vutbr.cz/ubuntu/archive/pool/universe" metafile="Packages" mtype="debmd" arch="x86_64" />
-  <download baseurl="ftp://mirror.vutbr.cz/ubuntu/archive/pool/restricted" metafile="Packages" mtype="debmd" arch="x86_64" />
-ftp://mirror.vutbr.cz/ubuntu/archive/dists/%codename%/main/binary-amd64/
-
+  <download baseurl="http://mirror.vutbr.cz/ubuntu/archive" metafile="Packages" mtype="debmd" arch="x86_64" />
+<!--
+  <download baseurl="http://mirror.vutbr.cz/ubuntu/archive" metafile="Packages" mtype="debmd" arch="x86_64" />
+  <download baseurl="http://mirror.vutbr.cz/ubuntu/archive" metafile="Packages" mtype="debmd" arch="x86_64" />
+  <download baseurl="http://mirror.vutbr.cz/ubuntu/archive" metafile="Packages" mtype="debmd" arch="x86_64" />
+-->
   <repository name="multiverse">
     <arch>x86_64</arch>
   </repository>
@@ -40,8 +40,4 @@ ftp://mirror.vutbr.cz/ubuntu/archive/dists/%codename%/main/binary-amd64/
   <repository name="restricted">
     <arch>x86_64</arch>
   </repository>
-
-<build>
-
-
 </project>
