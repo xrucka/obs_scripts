@@ -1,0 +1,43 @@
+<project name="Debian:%release%">
+  <title>Debian %release% Release (%codename%)</title>
+  <description>This contains all packages from Debian %release% "main".</description>
+  <person userid="luksoft" role="maintainer"/>
+  <person userid="Admin" role="maintainer"/>
+  <build>
+    <enable/>
+  </build>
+  <publish>
+    <enable/>
+  </publish>
+  <debuginfo>
+    <disable/>
+  </debuginfo>
+  <binarydownload>
+    <enable/>
+  </binarydownload>
+  <sourceaccess>
+    <disable/>
+  </sourceaccess>
+  <access>
+    <enable/>
+  </access>
+
+  <repository name="main">
+    <arch>x86_64</arch>
+  </repository>
+  <repository name="contrib">
+    <arch>x86_64</arch>
+  </repository>
+  <repository name="nonfree">
+    <arch>x86_64</arch>
+  </repository>
+  <repository name="updates_main">
+    <arch>x86_64</arch>
+  </repository>
+  <repository name="updates_contrib">
+    <arch>x86_64</arch>
+  </repository>
+  <repository name="updates_non-free">
+    <arch>x86_64</arch>
+  </repository>
+</project>
