@@ -1,6 +1,6 @@
 #!/bin/bash
 cd /srv/obs/build 
-for cuda in $(ls -1 | grep 'Cuda_deb:') ; do 
+for cuda in $(ls -1 | grep -E 'Cuda.*deb') ; do 
 	osc meta prj $cuda > /tmp/$cuda.regenerate
 	if ! pushd $cuda > /dev/null ; then
 		echo "failed to iterate $cuda" 1>&2
@@ -15,6 +15,8 @@ for cuda in $(ls -1 | grep 'Cuda_deb:') ; do
 		metafile=$(echo "$repolines" | grep metafile= | cut -f2 -d\" )
 
 		debarch=$(echo $arch | sed 's#x86_64#amd64#g')
+
+		echo $arch $type $baseurl $metafile
 
 		if test "x$type" = "xdebmd" -a -d "$repo/$arch" ; then
 			mkdir -p $repo/$arch/:full

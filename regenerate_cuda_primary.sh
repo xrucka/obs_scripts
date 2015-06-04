@@ -9,10 +9,10 @@ for cuda in $(ls -1 | grep 'Cuda:') ; do
 
 	for repo in $(ls -1) ; do
 		repolines=$(grep download /tmp/$cuda.regenerate | grep $repo | tr ' ' $'\n')
-		arch=$(echo "$repolines" | grep arch= | cut -f2 -d\" )
-		type=$(echo "$repolines" | grep mtype= | cut -f2 -d\" )
-		baseurl=$(echo "$repolines" | grep baseurl= | cut -f2 -d\" )
-		metafile=$(echo "$repolines" | grep metafile= | cut -f2 -d\" )
+		arch=$(echo "$repolines" | grep arch= | cut -f2 -d\" | head -n 1 )
+		type=$(echo "$repolines" | grep mtype= | cut -f2 -d\" | head -n 1 )
+		baseurl=$(echo "$repolines" | grep baseurl= | cut -f2 -d\" | head -n 1)
+		metafile=$(echo "$repolines" | grep metafile= | cut -f2 -d\" | head -n 1 )
 
 		if test "x$type" = "xrpmmd" -a -d "$repo/$arch" ; then
 			mkdir -p $repo/$arch/:full

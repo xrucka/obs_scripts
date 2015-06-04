@@ -1,8 +1,8 @@
 #!/bin/bash
 cd /srv/obs/build 
 
-for ubuntu in $(ls -1 | grep Ubuntu) ; do 
-
+for ubuntu in $(ls -1 | grep Ubuntu | grep -E '^Ubuntu:[^:]+$') ; do 
+	echo $ubuntu
 	osc meta prj $ubuntu > /tmp/$ubuntu.regenerate
 	if ! pushd $ubuntu > /dev/null ; then
 		echo "failed to iterate $ubuntu" 1>&2
@@ -46,5 +46,6 @@ for ubuntu in $(ls -1 | grep Ubuntu) ; do
 
 		popd > /dev/null
 	done
+	popd > /dev/null
 done
 /usr/sbin/obs_admin --check-all-projects x86_64

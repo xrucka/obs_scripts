@@ -1,6 +1,6 @@
-<project name="Ubuntu:%release%">
-  <title>Ubuntu %release% Release (%codename%)</title>
-  <description>Master project for Ubuntu %release%, individual repositories as subproject</description>
+<project name="Ubuntu:%release%:main">
+  <title>Ubuntu %release% Release (%codename%) main</title>
+  <description>This contains all packages from Ubuntu %release% "main", this includes also the packages from KUbuntu, XUbuntu and Edubuntu.</description>
   <person userid="luksoft" role="maintainer"/>
   <person userid="Admin" role="maintainer"/>
   <build>
@@ -21,7 +21,9 @@
   <access>
     <enable/>
   </access>
-  <repository name="empty">
+
+  <download baseurl="http://mirror.vutbr.cz/ubuntu/archive" metafile="Packages" mtype="debmd" arch="x86_64" />
+  <repository name="standard">
     <arch>x86_64</arch>
   </repository>
 </project>

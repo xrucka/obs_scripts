@@ -22,13 +22,15 @@
     <enable/>
   </access>
 
+  <download baseurl="http://127.0.0.1:81/linux/debian" metafile="Packages" mtype="debmd" arch="x86_64" />
+
   <repository name="main">
     <arch>x86_64</arch>
   </repository>
   <repository name="contrib">
     <arch>x86_64</arch>
   </repository>
-  <repository name="nonfree">
+  <repository name="non-free">
     <arch>x86_64</arch>
   </repository>
   <repository name="updates_main">
