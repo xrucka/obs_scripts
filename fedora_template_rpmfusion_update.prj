@@ -1,6 +1,6 @@
-<project name="Fedora:%release%">
-  <title>Fedora_%release%</title>
-  <description>Fedora %release% project</description>
+<project name="Fedora:%release%:rpmfusion-update-%repository%">
+  <title>Fedora_%release%_rpmfusion_update_%repository%</title>
+  <description>Fedora %release% rpmfusion update-%repository% packages</description>
   <group groupid="admins" role="bugowner"/>
   <group groupid="admins" role="downloader"/>
   <group groupid="admins" role="maintainer"/>
@@ -24,4 +24,8 @@
   <access>
     <enable/>
   </access>
+  <download baseurl="http://download1.rpmfusion.org/%repository%/fedora/updates/%release%/x86_64/" metafile="primary.xml" mtype="rpmmd" arch="x86_64" />
+  <repository name="standard">
+    <arch>x86_64</arch>
+  </repository>
 </project>

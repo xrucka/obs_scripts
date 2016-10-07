@@ -1,6 +1,6 @@
-<project name="Fedora:%release%">
-  <title>Fedora_%release%</title>
-  <description>Fedora %release% project</description>
+<project name="Fedora:%release%:%repository%">
+  <title>Fedora_%release%_%repository%</title>
+  <description>Fedora %release% %repository% packages</description>
   <group groupid="admins" role="bugowner"/>
   <group groupid="admins" role="downloader"/>
   <group groupid="admins" role="maintainer"/>
@@ -24,4 +24,7 @@
   <access>
     <enable/>
   </access>
+  <repository name="standard">
+    <arch>x86_64</arch>
+  </repository>
 </project>
