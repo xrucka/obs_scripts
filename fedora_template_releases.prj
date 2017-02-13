@@ -1,0 +1,31 @@
+<project name="Fedora:%release%:%repository%">
+  <title>Fedora_%release%_%repository%</title>
+  <description>Fedora %release% %repository% packages</description>
+  <group groupid="admins" role="bugowner"/>
+  <group groupid="admins" role="downloader"/>
+  <group groupid="admins" role="maintainer"/>
+  <group groupid="admins" role="reader"/>
+  <group groupid="admins" role="reviewer"/>
+  <build>
+    <enable/>
+  </build>
+  <publish>
+    <enable/>
+  </publish>
+  <debuginfo>
+    <disable/>
+  </debuginfo>
+  <binarydownload>
+    <enable/>
+  </binarydownload>
+  <sourceaccess>
+    <disable/>
+  </sourceaccess>
+  <access>
+    <enable/>
+  </access>
+  <download baseurl="http://127.0.0.1:81/linux/enchilada/linux/releases/%release%/Everything/x86_64/os/" metafile="primary.xml" mtype="rpmmd" arch="x86_64" />
+  <repository name="standard">
+    <arch>x86_64</arch>
+  </repository>
+</project>

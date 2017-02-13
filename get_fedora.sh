@@ -15,11 +15,10 @@ projdir="${projbase}/"Fedora:"$release"
 #fi
 
 sed "s#%release%#${release}#g" "$(dirname $0)/fedora_template.prj" > /tmp/fedora${release}.prj
-sed "s#%release%#${release}#g" "$(dirname $0)/fedora_template_system.prj" | sed "s#%codename%#${codename}#g" > /tmp/fedora${release}_system.prj
 sed "s#%release%#${release}#g" "$(dirname $0)/fedora_template_rpmfusion.prj" | sed "s#%codename%#${codename}#g" > /tmp/fedora${release}_rpmfusion.prj
 sed "s#%release%#${release}#g" "$(dirname $0)/fedora_template_rpmfusion_update.prj" | sed "s#%codename%#${codename}#g" > /tmp/fedora${release}_rpmfusion_update.prj
 
-subprojects_system=release,updates
+subprojects_system=releases,updates
 subprojects_rpmfusion=free,nonfree
 subprojects_rpmfusion_update=free,nonfree
 
@@ -31,7 +30,7 @@ fi
 
 for repo in $(eval echo ""{$subprojects_system}) ; do
 	repofile="/tmp/fedora${release}:${repo}.prj"
-	sed -r "s#%repository%#${repo}#g" /tmp/fedora${release}_system.prj > "${repofile}"
+	sed "s#%release%#${release}#g" "$(dirname $0)/fedora_template_${repo}.prj" | sed "s#%codename%#${codename}#g" | sed -r "s#%repository%#${repo}#g" > "${repofile}"
 	( osc meta prj -F "${repofile}" \
 		$(grep "<project name=" "${repofile}" | cut -d'"' -f 2) \
 		&& echo "Successfully created $repo for Fedora ${release}" ) \
@@ -54,7 +53,6 @@ for repo in $(eval echo ""{$subprojects_rpmfusion_update}) ; do
 		|| echo "Error creating $repo for Fedora rpmfusion update ${release}, manual import needed" >&2
 done
 
-
 for subproject in $(find /srv/obs/build/ -mindepth 1 -maxdepth 1 -type d -name "Fedora:${release}:*" | cut -d/ -f5) ; do
 sed "s/#fedoraversion/${release}/g" "$(dirname $0)/fedora_template.prjconf" > "/tmp/fedora${release}.prjconf"
 	if osc meta prjconf -F /tmp/fedora${release}.prjconf ${subproject} ; then
@@ -69,13 +67,13 @@ sed "s/#fedoraversion/${release}/g" "$(dirname $0)/fedora_template.prjconf" > "/
 	done
 done
 
-pushd $projdir:release/standard/x86_64/
-mkdir -p :full
-ln -s /mnt/pub_linux_cz/linux/fedora/enchilada/linux/releases/${release}/Everything/x86_64/os/Packages ./:full/
-popd
+#pushd $projdir:release/standard/x86_64/
+#mkdir -p :full
+#ln -s /mnt/pub_linux_cz/linux/fedora/enchilada/linux/releases/${release}/Everything/x86_64/os/Packages ./:full/
+#popd
 
-pushd $projdir:updates/standard/x86_64/
-mkdir -p :full
-ln -s /mnt/pub_linux_cz/linux/fedora/enchilada/linux/updates/${release}/x86_64/ ./:full/Packages
-popd
+#pushd $projdir:updates/standard/x86_64/
+#mkdir -p :full
+#ln -s /mnt/pub_linux_cz/linux/fedora/enchilada/linux/updates/${release}/x86_64/ ./:full/Packages
+#popd
 

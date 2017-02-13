@@ -24,6 +24,7 @@
   <access>
     <enable/>
   </access>
+  <download baseurl="http://127.0.0.1:81/linux/fedora/enchilada/linux/updates/%release%/x86_64/" metafile="primary.xml" mtype="rpmmd" arch="x86_64" />
   <repository name="standard">
     <arch>x86_64</arch>
   </repository>
