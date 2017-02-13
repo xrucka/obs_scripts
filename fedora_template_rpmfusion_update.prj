@@ -1,6 +1,6 @@
-<project name="Fedora:%release%:rpmfusion-update-%repository%">
-  <title>Fedora_%release%_rpmfusion_update_%repository%</title>
-  <description>Fedora %release% rpmfusion update-%repository% packages</description>
+<project name="Fedora:%release%:rpmfusion-updates-%repository%">
+  <title>Fedora_%release%_rpmfusion_updates_%repository%</title>
+  <description>Fedora %release% rpmfusion updates %repository% packages</description>
   <group groupid="admins" role="bugowner"/>
   <group groupid="admins" role="downloader"/>
   <group groupid="admins" role="maintainer"/>

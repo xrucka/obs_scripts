@@ -16,7 +16,8 @@ for debian in $(ls -1 | grep Debian) ; do
 
 			cp debian/dists/${parentrepo}/${repos[@]:(-1)}/binary-amd64/Packages.gz ./
 			gunzip -fd Packages.gz
-			find -L pool -maxdepth 2 -type d | sed 's#[.]/##g' > ../:full.subdirs
+			find -L debian/pool -maxdepth 2 -type d | sed 's#[.]/##g' > ../:full.subdirs
+			find . -maxdepth 1 -name "*.deb" -exec rm {} \;
 			popd > /dev/null
 		fi
 	done

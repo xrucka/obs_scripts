@@ -1,7 +1,7 @@
 #!/bin/bash
-cd /srv/obs/build 
+cd /srv/obs/build
 
-for ubuntu in $(ls -1 | grep Ubuntu | grep -E '^Ubuntu:[^:]+:.+$') ; do 
+for ubuntu in $(ls -1 | grep Ubuntu | grep -E '^Ubuntu:[^:]+:.+$') ; do
 	echo $ubuntu
 	osc meta prj $ubuntu > /tmp/$ubuntu.regenerate
 	pwd
@@ -14,7 +14,7 @@ for ubuntu in $(ls -1 | grep Ubuntu | grep -E '^Ubuntu:[^:]+:.+$') ; do
 	subproject=$(echo ${ubuntu} | cut -d: -f3)
 	repo=standard
 
-	repolines=$(grep download /tmp/$ubuntu.regenerate | head -n 1 | tr ' ' $'\n')
+	repolines=$(grep \<download /tmp/$ubuntu.regenerate | head -n 1 | tr ' ' $'\n')
 	arch=$(echo "$repolines" | grep arch= | cut -f2 -d\" )
 	type=$(echo "$repolines" | grep mtype= | cut -f2 -d\" )
 	baseurl=$(echo "$repolines" | grep baseurl= | cut -f2 -d\" )
@@ -30,7 +30,7 @@ for ubuntu in $(ls -1 | grep Ubuntu | grep -E '^Ubuntu:[^:]+:.+$') ; do
 		exit 1
 	fi
 	rm $metafile
-		
+
 	wget -r -np -nd -l 1 --no-host-directories -o /dev/null "$baseurl/" -A "*"$metafile"*"
 		if ! test "x$(ls -1 | fgrep  $metafile'.gz')" = x ; then
 		for meta in *$metafile'.gz' ; do
