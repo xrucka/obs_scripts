@@ -43,3 +43,5 @@ for cuda in $(ls -1 | grep 'Cuda:') ; do
 	popd > /dev/null
 
 done
+/usr/sbin/obs_admin --check-all-projects x86_64
+
